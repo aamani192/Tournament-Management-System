@@ -38,11 +38,18 @@ Each user type has different permissions: admins oversee all users and events, o
 ## Folder Structure
 
 CriterionC/
+
 │
+
 ├── main.py # Main entry point
+
 ├── database.py # Handles database connection
+
 ├── admin.py # Admin-related functions
+
 ├── organizer.py # Organizer functions
+
 ├── player.py # Player functions
+
 └── README.md
 
