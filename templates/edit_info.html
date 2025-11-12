@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            text-align: center; /* Center-align text within the body */
+        }
+    
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+    
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+    
+        table {
+            width: 40%;
+            margin: 0 auto; 
+            
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            padding-bottom: 5%;
+
+
+        }
+    
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+    
+        th {
+            background-color: #042a53;
+            color: #fff;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: #c6c6c6;
+        }
+    
+        input[type="submit"] {
+            background-color: #b00000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #8e0404;
+        }
+
+        button[type="button"] {
+         background-color: #b00000;
+         color: #fff;
+         border: none;
+         padding: 10px 20px;
+         margin-top: 10px;
+         cursor: pointer;
+         border-radius: 3px;
+     }
+ 
+     button[type="button"]:hover {
+         background-color: #8e0404;
+     }
+     
+
+        .container {
+            text-align: center;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Info</title>
+</head>
+<form method="POST" action="/confirm_edit" enctype="multipart/form-data">
+    <div class="container">
+    <table>
+        <th><h3>Edit Event Details</h3</th>
+    <tr>
+        <td>
+            <label for="event_name">Event Name</label>
+            <input type="text" id="event_name" name="event_name" required>
+        </td> 
+    </tr>
+
+    <tr>
+        <td>
+            <label for="sport">Sport</label>
+            <input type="text" id="sport" name="sport" required>
+        </td> 
+    </tr>
+
+
+    <tr>
+        <td>
+            <label for="venue">Venue</label>
+            <input type="text" id="venue" name="venue" required>
+        </td> 
+    </tr>
+
+    <tr>
+        <td>
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required> 
+            <!-- Creates drop down calander to select date -->
+        </td> 
+    </tr>
+
+    <tr>
+        <td>
+            <label for="max_players">Maximum Players per Team</label>
+            <input type="integer" id="max_players" name="max_players" required>
+        </td> 
+    </tr>
+    <tr>
+        <td>
+            <label for="price_per_player">Price per player</label>
+            <input type="integer" id="price_per_player" name="price_per_player" required>
+        </td> 
+    </tr>
+
+    <tr>
+        <td>
+            <label for="additional">Additional Information</label>
+            <input type="text" id="additional" name="additional">
+        </td> 
+    </tr>
+
+</table>
+
+
+
+    <input type="submit" value="Add event" onclick="new_tournament()">
+    <button type="button" onclick="ftnBack()">Back</button>
+ 
+</form>
+
+<script>
+    function ftnBack() {
+        window.location.href = '/organizer_homepage'; 
+    }
+
+// Define the function to validate the selected date
+function validateDate() {
+// Get the date picker input element
+var datePicker = document.getElementById('date');
+
+// Get the selected date value
+var selectedDate = new Date(datePicker.value);
+
+// Get the current date
+var currentDate = new Date();
+
+// Check if the selected date is in the past
+if (selectedDate < currentDate) {
+  // If it's in the past, show an alert and clear the input
+  window.alert('Error: Please select a date in the future.');
+  datePicker.value = '';
+}
+}
+
+// Attach the function to the date picker's change event
+document.getElementById('date').addEventListener('change', validateDate);
+function new_tournament() {
+            window.alert('Details have been corrected');
+        }
+</script>
+</html>

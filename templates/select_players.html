@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                text-align: center; 
+            }
+        
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fff;
+            }
+            h3 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fbfbfb;
+            }
+        
+        
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+        
+            table {
+                width: 80%;
+                margin: 0 auto; 
+                
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+
+
+            }
+        
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+        
+            th {
+                background-color: #042a53;
+                color: #fff;
+            }
+        
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(odd) {
+                background-color: #c6c6c6;
+            }
+        
+
+        
+            button[type="button"] {
+                background-color: #ed0606;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #3f0303;
+            }
+
+            .container {
+            text-align: center;
+        }
+        </style>
+        <title> success </title>
+        <h1> Select Players  </h1>
+       
+    </head>
+    <body>
+    <script>
+        function ftn_add_players_to_team(player_id){
+            document.getElementById("select_players").action="/add_player_to_team";
+            document.getElementById("select_players").submit();
+            
+        }
+        function ftn_create_player(){
+            document.getElementById("select_players").action="/add_new_player";
+            document.getElementById("select_players").submit();
+        }
+
+    </script>
+    <form id="select_players"  align="center" method="POST" >
+        <h3>{{message}}</h3>
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Phone Number</th>
+                        <th>Select</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for res in result %}
+                    <tr>
+                        <td>{{ res[1] }}</td>
+                        <td>{{ res[2] }}</td>
+                        <td><input type="checkbox" name="player_list" value={{res[0]}}></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+    
+                </table>
+  
+            <button type="button" onclick="ftn_add_players_to_team()">Add players to your team</button>
+            <button type="button" onclick="ftn_create_player()">Add New Player</button>
+            <button type="button" onclick="history.back()">Back</button>
+        </div>
+    </form>
+    </body>
+    </html>
+    

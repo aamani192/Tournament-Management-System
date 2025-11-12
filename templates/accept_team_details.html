@@ -1,0 +1,91 @@
+
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+            }
+    
+
+    
+            h2 {
+                text-align: center;
+                /* margin-top: 20px; */
+                color: #042a53;
+            }
+
+                
+            h3 {
+                text-align: center;
+                /* margin-top: 20px; */
+                color: #a80101;
+            }
+    
+            form {
+                max-width: 400px;
+                margin: 20px auto;
+                background-color: rgba(255, 255, 255, 0.9);
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                
+            }
+    
+            label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+    
+            input[type="text"],
+            input[type="number"] {
+                width: 90%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+    
+            input[type="submit"] {
+                background-color: #042a53;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+    
+            input[type="submit"]:hover {
+                background-color: #02254b;
+            }
+    
+            .container {
+                text-align: center;
+            }
+            </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Team Details</title>
+
+    </head>
+    <form method="POST" action="/register_team" enctype="multipart/form-data">
+        <h2>Enter Team Details </h2>
+        <h3>{{result}}</h3>
+        <label for="team_name">Team Name: </label>
+        <input type="text" id="team_name" name="team_name" required>
+    
+        <label for="num_team_players">Number of players: </label>
+        <input type="number" id="num_team_players" name="num_team_players" required>  
+    
+        <input type="submit" name="next" value="Next">
+    </form>
+    </html>
+    

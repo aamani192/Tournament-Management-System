@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <style>
+                   body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            text-align: center; 
+        }
+    
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+    
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+    
+        table {
+            width: 40%;
+            margin: 0 auto; 
+            
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            padding-bottom: 5%;
+
+
+        }
+    
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+    
+        th {
+            background-color: #042a53;
+            color: #fff;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: #c6c6c6;
+        }
+                
+        input[type="hidden"] {
+                display: none; 
+            }
+    
+
+        button[type="button"] {
+                background-color: #b00000;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #8e0404;
+            }
+    </style>
+  
+        </style>
+        <title> Manage Events</title>
+        <h1> Manage Events </h1>
+       
+    </head>
+    <body>
+    <script>
+        function ftn_select_event(event_id){
+            document.getElementById("select_event").value=event_id;
+            document.getElementById("manage_events").action="/select_event";
+            document.getElementById("manage_events").submit();
+        }
+        function ftnBack() {
+            window.location.href = '/organizer_homepage'; 
+        }
+    </script>
+    <form id="manage_events" align="center"method="POST" >
+            <div class="container">
+                <table>
+                    <tbody>
+                    {% for res in result %}
+                    <tr>
+                        <td>{{ res[1] }}</td>
+                        <td><button type="button" onclick="ftn_select_event('{{res[0]}}')">Select</button> </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+    
+                </table>
+    
+             </div>
+
+            <input  type="hidden" id="select_event" name="select_event" value="" />
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+    </body>
+    </html>
+    

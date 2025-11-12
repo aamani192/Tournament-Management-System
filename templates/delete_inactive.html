@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <style>
+
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                text-align: center; /* Center-align text within the body */
+            }
+        
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fff;
+            }
+        
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+        
+            table {
+                width: 80%;
+                margin: 0 auto; 
+                
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+
+
+            }
+        
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+        
+            th {
+                background-color: #042a53;
+                color: #fff;
+            }
+        
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(odd) {
+                background-color: #c6c6c6;
+            }
+        
+        
+            input[type="hidden"] {
+                display: none; 
+            }
+        
+            button[type="button"] {
+                background-color: #042a53;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #02254b;
+            }
+
+   
+</style>    
+            
+        <title> Delete Inactive Users</title>
+        <h1> Delete Inactive Users</h1>
+       
+    </head>
+    <body>
+    <script>
+        function ftnDelete(username){
+            var result = confirm("Do you want to delete this user account?");
+            if (result) {
+                
+                document.getElementById("user_name").value=username;
+                document.getElementById("delete_inactive").action="/delete_user";
+                document.getElementById("delete_inactive").submit();
+        }}
+
+        function ftnBack(){
+            document.getElementById("delete_inactive").action="/admin_homepage";
+            document.getElementById("delete_inactive").submit();
+        }
+    </script>
+    <form id="delete_inactive"  align="center" method="POST">
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Last Active </th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for res in result %}
+                    <tr>
+                        <td>{{ res[0] }}</td>
+                        <td>{{ res[1] }}</td>
+                        <td><button type="button" onclick="ftnDelete('{{res[0]}}')">Delete</button> </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+    
+                </table>
+    
+             </div>
+            <input  type="hidden" id="user_name" name="user_name" value="" />
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+    </body>
+    </html>
+    

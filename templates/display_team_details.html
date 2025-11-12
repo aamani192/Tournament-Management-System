@@ -1,0 +1,231 @@
+<html>
+    <head>
+        <style>
+            body {
+     font-family: Arial, sans-serif;
+     background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     margin: 0;
+     padding: 0;
+     text-align: center;
+ }
+
+ h1 {
+     text-align: center;
+     margin-top: 20px;
+     color: #fff;
+ }
+
+ h2 {
+     text-align: center;
+     margin-top: 20px;
+     color: #fff;
+ }
+ form {
+     text-align: center;
+     margin-top: 20px;
+ }
+
+ table {
+     width: 40%;
+     margin: 0 auto; 
+     
+     border-collapse: collapse;
+     border: 1px solid #ccc;
+     padding-bottom: 5%;
+
+
+ }
+
+ th, td {
+     padding: 10px;
+     text-align: center;
+     border: 1px solid #ccc;
+ }
+
+ th {
+     background-color: #042a53;
+     color: #fff;
+ }
+
+ tr:nth-child(even) {
+     background-color: #f2f2f2;
+ }
+ tr:nth-child(odd) {
+     background-color: #c6c6c6;
+ }
+         
+ input[type="hidden"] {
+         display: none; 
+     }
+
+
+ button[type="button"] {
+         background-color: #b00000;
+         color: #fff;
+         border: none;
+         padding: 10px 20px;
+         margin-top: 10px;
+         cursor: pointer;
+         border-radius: 3px;
+     }
+ 
+     button[type="button"]:hover {
+         background-color: #8e0404;
+     }
+     label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            margin-top:  20 px auto ;
+            color:#ffffff
+        }
+
+
+     input[type="radio"]{
+            background-color: #042a53;
+             color: #090000;
+             border: none;
+             padding: 10px 20px;
+             margin: 5px;
+             cursor: pointer;
+             border-radius: 3px;
+
+        }
+        label.radio-label {
+        font-weight: normal;
+        color: #ffffff; 
+        margin-bottom: 5px;
+        display: inline;
+    }
+    .container {
+            text-align: center;
+        }
+
+        .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+
+
+        <title> Team Details </title>
+
+       
+    </head>
+    <body>
+        <h1> Team Details</h1>
+        <h2> Team Name: {{team_info[0]}}</h2>
+    <script>
+
+function Confirm_Payment() {
+            var PaymentSwitch = document.getElementById('PaymentSwitch');
+            var paid = PaymentSwitch.checked;
+
+            alert('Payment status has been successfully updated: ' + (paid ? 'Complete' : 'Pending'));
+
+
+            document.getElementById("payment_status").value = paid ? 1 : 0;
+            document.getElementById("team_details").action = "/update_payment";
+            document.getElementById("team_details").submit();
+        }
+
+
+        function ftnBack() {
+    window.location.href = "/view_teams"; 
+}
+    </script>
+    <form id="team_details"  align="center"  method="POST">
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Player Name</th>
+                        <th>Phone Number </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for player in player_info %}
+                    <tr>
+                        <td>{{ player[0] }}</td>
+                        <td>{{ player[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <br>   
+                <br>   
+                <label for="payment_status"> Payment Status</label>
+                <br>
+                <label class="switch">
+                   <input type="checkbox" id="PaymentSwitch" {% if payment_status %}checked{% endif %}>
+                   <span class="slider round"></span>
+               </label>
+               <br>
+
+    
+             </div>
+            <button type="button" onclick="Confirm_Payment()">Confirm Payment</button>
+            <input type="hidden" id="payment_status" name="payment_status" value="" />
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+    </body>
+    </html>
+    

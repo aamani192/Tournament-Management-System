@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+         <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                text-align: center; 
+            }
+        
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fff;
+            }
+        
+            form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+        
+
+        
+            button[type="button"] {
+                background-color: #042a53;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+            label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="submit"] {
+            background-color: #042a53;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #02254b;
+        }
+        </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pending Approval</title>
+</head>
+<form method="POST" action="/" enctype="multipart/form-data">
+
+    <label for="message">Waiting for approval</label>
+    <br>
+    
+    <label for="message2">Incase of any issues, please contact: </label>    
+    <label for="message3">{{contact_email}} </label>
+
+    <input type="submit" name="back" value="Back">
+</form>
+</html>

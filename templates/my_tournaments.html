@@ -1,0 +1,131 @@
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
+        
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fff;
+            }
+        
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+        
+            table {
+                width: 80%;
+                margin: 0 auto; 
+                
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+
+
+            }
+        
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+        
+            th {
+                background-color: #042a53;
+                color: #fff;
+            }
+        
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(odd) {
+                background-color: #c6c6c6;
+            }
+        
+        
+            input[type="hidden"] {
+                display: none; 
+            }
+        
+            button[type="button"] {
+                background-color: #042a53;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #02254b;
+            }
+        </style>
+      
+        
+        
+        
+        
+        
+
+            
+        <title> My tournaments </title>
+        <h1> My Tournaments </h1>
+       
+    </head>
+    <body>
+    <script>
+        function ftnViewInfo(event_id){
+
+            document.getElementById("event_id").value=event_id;
+            document.getElementById("my_tournaments").action="/view_info";
+            document.getElementById("my_tournaments").submit();
+        }
+        function ftnWithdraw(event_id){
+
+            document.getElementById("event_id").value=event_id;
+            document.getElementById("my_tournaments").action="/withdraw";
+            document.getElementById("my_tournaments").submit();
+        }
+        function ftnBack(){
+            document.getElementById("my_tournaments").action="/participant_homepage";
+            document.getElementById("my_tournaments").submit();
+        }
+    </script>
+    <form id="my_tournaments"  align="center" method="POST">
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>View Details </th>
+                        <th>Withdraw</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for res in result %}
+                    <tr>
+                        <td>{{ res[0] }}</td>
+                        <td><button type="button" onclick="ftnViewInfo('{{res[1]}}')">Select</button> </td>
+                        <td><button type="button" onclick="ftnWithdraw('{{res[1]}}')">Withdraw</button> </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+    
+                </table>
+    
+             </div>
+            <input  type="hidden" id="event_id" name="event_id" value="" />
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+    </body>
+    </html>

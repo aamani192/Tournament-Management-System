@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #042a53;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            color: #e10707;
+        }
+
+        label.radio-label {
+        font-weight: normal;
+        color: #000; 
+        margin-bottom: 5px;
+        display: inline;
+    }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            ;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"]
+         {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        input[type="radio"]{
+            background-color: #042a53;
+             color: #090000;
+             border: none;
+             padding: 10px 20px;
+             margin: 5px;
+             cursor: pointer;
+             border-radius: 3px;
+
+        }
+
+        input[type="submit"] {
+            background-color: #042a53;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #02254b;
+        }
+        button[type="button"] {
+                background-color: #c90707;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+                margin: 20px auto;
+                display: block;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #420505;
+            }
+
+
+        .container {
+            text-align: left;
+        }
+    </style>
+ 
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign up</title>
+
+    <script>
+        //Validates user details in order to create account 
+        function validateForm() {
+            var username = document.getElementById('username').value; //Gets value entered as username
+            var password = document.getElementById('password').value;//Gets value entered as password
+            var confirm_password = document.getElementById('confirm_password').value; ////Gets value entered to confirm password
+
+            // Check if username is between 3 and 20 characters
+            if (username.length < 3 || username.length > 20) {
+                window.alert("Username must be between 3 and 20 characters");
+                return false;
+            }
+
+            // Check if password is at least 7 characters long
+            if (password.length < 7) {
+                alert("Password must be at least 7 characters");
+                return false;
+            }
+
+            // Check if passwords match
+            if (password !== confirm_password) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            return true; // Allow the form to submit
+        }
+ 
+        
+            function ftnBack() {
+                window.location.href = '/logout'; 
+            }
+        function account_type() {
+            var participant = document.getElementById("participant");
+            var organizer = document.getElementById("organizer");
+            var acc_type = "";
+            if (participant.checked) {
+                acc_type = "participant";
+            } 
+            else if (organizer.checked) {
+                acc_type = "organizer";
+        }}
+        </script>
+</head>
+<body>
+    <div class="container">
+<form method="POST" action="/new_user" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <h2>Sign Up</h2>
+    <h3>{{result}}</h3>
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
+    <br>
+    <label>Account Type</label>
+    <input type="radio" id="participant" name="acc_type" value="Participant" required>
+    <label class="radio-label" for="participant">Participant</label>
+    <br>
+    <input type="radio" id="organizer" name="acc_type" value="Organizer" required>
+    <label class="radio-label" for="organizer">Organizer</label>
+    <br>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" name="confirm_password" required>
+    <br>
+    <input type="submit" value="Sign Up">
+</form>
+<button type="button" onclick="ftnBack()">Back</button>
+</div>
+</body>
+</html>

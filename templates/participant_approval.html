@@ -1,0 +1,129 @@
+<html>
+    <head>
+        <style>
+
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                text-align: center; 
+            }
+        
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fff;
+            }
+        
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+        
+            table {
+                width: 80%;
+                margin: 0 auto; 
+                
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+
+
+            }
+        
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+        
+            th {
+                background-color: #042a53;
+                color: #fff;
+            }
+        
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(odd) {
+                background-color: #c6c6c6;
+            }
+        
+        
+            input[type="hidden"] {
+                display: none; 
+            }
+        
+            button[type="button"] {
+                background-color: #042a53;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #02254b;
+            }
+
+   
+</style>    
+            
+        <title> Participant Approval</title>
+        <h1> Approve new participants</h1>
+       
+    </head>
+    <body>
+    <script>
+        function ftnApprove(username){
+
+            document.getElementById("user_name").value=username;
+            document.getElementById("approve_participants").action="/approve_new_participant";
+            document.getElementById("approve_participants").submit();
+        }
+        function ftnDecline(username){
+            document.getElementById("user_name").value=username;
+            document.getElementById("approve_participants").action="/decline_new_participant";
+            document.getElementById("approve_participants").submit();
+        }
+        function ftnBack(){
+            document.getElementById("approve_participants").action="/admin_homepage";
+            document.getElementById("approve_participants").submit();
+        }
+    </script>
+    <form id="approve_participants"  align="center" method="POST">
+            <div class="container">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email </th>
+                        <th>Approve</th>
+                        <th>Decline</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for res in result %}
+                    <tr>
+                        <td>{{ res[1] }}</td>
+                        <td>{{ res[0] }}</td>
+                        <td><button type="button" onclick="ftnApprove('{{res[1]}}')">Approve</button> </td>
+                        <td><button type="button" onclick="ftnDecline('{{res[1]}}')">Decline</button> </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+    
+                </table>
+    
+             </div>
+            <input  type="hidden" id="user_name" name="user_name" value="" />
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+    </body>
+    </html>
+    

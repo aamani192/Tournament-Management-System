@@ -1,0 +1,243 @@
+<html>
+    <head>
+        <style>
+            body {
+     font-family: Arial, sans-serif;
+     background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     margin: 0;
+     padding: 0;
+     text-align: center; 
+ }
+
+ h1 {
+     text-align: center;
+     margin-top: 20px;
+     color: #fff;
+ }
+
+ form {
+     text-align: center;
+     margin-top: 20px;
+     color:#fff;
+
+ }
+
+ table {
+     width: 40%;
+     margin: 0 auto; 
+     
+     border-collapse: collapse;
+     border: 1px solid #ccc;
+     padding-bottom: 5%;
+
+
+ }
+
+ th, td {
+     padding: 10px;
+     text-align: center;
+     border: 1px solid #ccc;
+ }
+
+ th {
+     background-color: #042a53;
+     color: #fff;
+ }
+
+ tr:nth-child(even) {
+     background-color: #f2f2f2;
+ }
+ tr:nth-child(odd) {
+     background-color: #c6c6c6;
+ }
+         
+ input[type="hidden"] {
+         display: none; 
+     }
+
+     label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            margin-top:  20 px auto ;
+        }
+
+ button[type="button"] {
+         background-color: #b00000;
+         color: #fff;
+         border: none;
+         padding: 10px 20px;
+         margin-top: 10px;
+         cursor: pointer;
+         border-radius: 3px;
+     }
+ 
+     button[type="button"]:hover {
+         background-color: #8e0404;
+     }
+
+     input[type="radio"]{
+            background-color: #042a53;
+             color: #090000;
+             border: none;
+             padding: 10px 20px;
+             margin: 5px;
+             cursor: pointer;
+             border-radius: 3px;
+
+        }
+        label.radio-label {
+        font-weight: normal;
+        color: #ffffff; 
+        margin-bottom: 5px;
+        display: inline;
+    }
+    
+     .container {
+            text-align: center;
+        }
+        .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+        <title> Events </title>
+        <h1> Select Team</h1>
+    </head>
+    <body>
+    <script>
+        function Confirm_Availability() {
+            var availabilitySwitch = document.getElementById('availabilitySwitch');
+            var isAvailable = availabilitySwitch.checked;
+            alert('Availability status has been successfully updated: ' + (isAvailable ? 'Available' : 'Unavailable'));
+            document.getElementById("availability_status").value = isAvailable ? 1 : 0;
+            document.getElementById("manage_this_event").action = "/update_availability";
+            document.getElementById("manage_this_event").submit();
+        }
+       
+        function ftn_select_team(team_id){
+            document.getElementById("team_selection").value=team_id;
+            document.getElementById("manage_this_event").action="/view_team_details";
+            document.getElementById("manage_this_event").submit();
+        }
+
+        function ftn_delete_team(team_id){
+            document.getElementById("team_selection").value=team_id;
+            document.getElementById("manage_this_event").action="/remove_team";
+            document.getElementById("manage_this_event").submit();
+        }
+
+        function ftn_fixture(){
+            document.getElementById("manage_this_event").action="/fixture";
+            document.getElementById("manage_this_event").submit();
+        }
+
+        function ftnBack() {
+    window.location.href = '/show_event'; 
+}
+    </script>
+    <div class="container">
+    <form id="manage_this_event"  align="center"  method="POST">
+            
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Payment</th>
+                        <th>Select</th>
+                        <th>Remove</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% set result_length = result|length %}
+
+                        {% for i in range(result_length) %}
+                            <tr>
+                                <td>{{ result[i][1] }}</td>
+                                <td>{{ payment_info[i] }}</td>
+                                <td><button type="button" onclick="ftn_select_team('{{ result[i][0] }}')">Select</button></td>
+                                <td><button type="button" onclick="ftn_delete_team('{{ result[i][0] }}')">Delete</button></td>
+                            </tr>
+                        {% endfor %}                        
+
+                    </tbody>
+    
+                </table>
+            <br>   
+            
+             <label for="availability"> Availability</label>
+             <br>
+             <label class="switch">
+                <input type="checkbox" id="availabilitySwitch" {% if availability_status %}checked{% endif %}>
+                <span class="slider round"></span>
+            </label>
+            <br>                   
+             <button type="button" onclick="ftn_fixture()">Create Fixture</button>
+             <input type="hidden" id="availability_status" name="availability_status" value="" />
+             <button type="button" onclick="Confirm_Availability()">Confirm Availability Status</button>
+            <input  type="hidden" id="team_selection" name="team_selection" value="" />
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+
+</div>
+    </body>
+    </html>
+    

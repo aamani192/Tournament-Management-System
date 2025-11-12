@@ -1,0 +1,9 @@
+# Python cache folders
+__pycache__/
+
+# Secret or credentials file
+secret.py
+
+# Optional - ignore system/editor files
+.vscode/
+.DS_Store

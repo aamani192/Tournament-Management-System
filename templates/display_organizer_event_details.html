@@ -1,0 +1,129 @@
+    <html> 
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                margin: 0;
+                padding: 0;
+                text-align: center; 
+            }
+        
+            h3 {
+                text-align: center;
+                margin-top: 20px;
+                color: #fff;
+            }
+        
+            form {
+                text-align: center;
+                margin-top: 20px;
+                color: #c6c6c6;
+            }
+        
+            table {
+                width: 40%;
+                margin: 0 auto; 
+                
+                border-collapse: collapse;
+                border: 1px solid #ccc;
+                padding-bottom: 5%;
+    
+    
+            }
+        
+            th, td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+        
+            th {
+                background-color: #042a53;
+                color: #fff;
+            }
+        
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:nth-child(odd) {
+                background-color: #c6c6c6;
+            }
+            button[type="button"] {
+                background-color: #042a53;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #02254b;
+            }                  
+ 
+        </style>
+        <title> Event Details  </title>      
+    </head>
+    <body>
+    <script>
+        function view_more_info(event_id){
+            document.getElementById("display_organizer_event_details").action="/view_teams";
+            document.getElementById("display_organizer_event_details").submit();
+        }
+        function edit_info(event_id){
+            document.getElementById("display_organizer_event_details").action="/edit_info";
+            document.getElementById("display_organizer_event_details").submit();
+        }
+        function ftnBack() {
+    window.location.href = '/manage_events'; 
+}
+    </script>
+    <form id="display_organizer_event_details"  align="center" method="POST">
+        <table>
+            <th><h3> Event Details </h3></th>
+            <tr><td>
+        <label for="event_name">Event Name: </label>
+        <label for="event_name">{{result[1]}}</label></td></tr>
+ 
+        <tr><td>
+        <label for="sport">Sport: </label>
+        <label for="sport">{{result[2]}}</label>
+    </td></tr>
+
+    <tr><td>
+        <label for="date">Date: </label>
+        <label for="date">{{result[3]}}</label>
+    </td></tr>
+    
+    
+    <tr><td>
+        <label for="event_name">Venue: </label>
+        <label for="event_name">{{result[4]}}</label>
+    </td></tr>
+    <tr><td>
+        <label for="max_players">Maximum Number of Players: </label>
+        <label for="ax_players">{{result[5]}}</label>
+    </td></tr>
+    <tr><td>
+        <label for="price">Price per Player: </label>
+        <label for="price">{{result[6]}}</label>
+    </td></tr>
+    <tr><td>
+        <label for="additional">Additional Information: </label>
+        <label for="additional">{{result[7]}}</label>
+    </td></tr>
+    </table>
+
+            
+            <button type="button" onclick="edit_info('{{result[0]}}')">Edit Details</button>
+            <button type="button" onclick="view_more_info('{{result[0]}}')">View More Information</button>
+            <button type="button" onclick="ftnBack()">Back</button>
+    </form>
+    </body>
+    </html>
+      

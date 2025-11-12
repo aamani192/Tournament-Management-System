@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #042a53;;
+        }
+
+        form {
+
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #042a53;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #02254b;
+        }
+
+        button[type="button"] {
+                background-color: #c90707;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+                margin: 20px auto;
+                display: block;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #420505;
+            }
+    </style>
+
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alert</title>
+
+</head>
+<body>
+    <div class="container">
+    <script>
+ 
+        function ftnBack() {
+    window.location.href = '/participant_homepage'; 
+}
+    </script>
+<form id="participant_message" method="POST" action="/participant_homepage" enctype="multipart/form-data">
+    <h3>{{result}}</h3>
+    <h2>{{message}}</h2>
+</form>
+<button type="button" onclick="ftnBack()">Back</button>
+</div>
+</body>
+</html>

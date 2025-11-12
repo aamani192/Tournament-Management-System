@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img.freepik.com/premium-vector/halftone-with-grunge-brush-background_498928-483.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #042a53;;
+        }
+
+        form {
+
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #042a53;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #02254b;
+        }
+
+        button[type="button"] {
+                background-color: #c90707;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                margin-top: 10px;
+                cursor: pointer;
+                border-radius: 3px;
+                margin: 20px auto;
+                display: block;
+            }
+        
+            button[type="button"]:hover {
+                background-color: #420505;
+            }
+        
+    </style>
+    <script>
+            function ftnLogOut() {
+                 window.location.href = '/logout'; 
+}
+    </script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="container">
+<form method="POST" action="/participant_options" enctype="multipart/form-data">
+    <h1>Select Option</h1>
+    <input type="submit" name="available_tournaments" value="View Available Tournaments">
+    <input type="submit" name="your_tournaments" value="View Your Tournaments">
+
+</form> 
+<button type="button" onclick="ftnLogOut()">Log Out</button>
+</div>
+</body>
+</html>
