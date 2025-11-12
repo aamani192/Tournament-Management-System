@@ -10,6 +10,9 @@ It makes it easy for organizers to create events and for players to browse and s
 The project was built to simulate how real-world event platforms work. It focuses on role-based access and database-driven operations using Python and MySQL.  
 Each user type has different permissions: admins oversee all users and events, organizers manage their own events, and players can register for the ones they’re interested in.
 
+> **Note:** The project uses a MySQL database.  
+> Some setup is required to run locally, but this repository is meant to showcase backend structure and logic.
+
 ---
 
 ## Features
